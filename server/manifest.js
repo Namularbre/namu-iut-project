@@ -47,10 +47,11 @@ module.exports = new Confidence.Store({
                         knex: {
                             client: 'mysql',
                             connection: {
+                                //Conteneur Docker d5f9fc34f7779eeb8306b358866fd8c53f93df82f7e25ab006d48a82485228e9
                                 host: process.env.DB_HOST || '0.0.0.0',
                                 user: process.env.DB_USER || 'root',
-                                password: process.env.DB_PASSWORD || '1234',
-                                database: process.env.DB_DATABASE || 'hapi'
+                                password: process.env.DB_PASSWORD || 'hapi',
+                                database: process.env.DB_DATABASE || 'user'
                             },
                             migrations: {
                                 stub: Schwifty.migrationsStubPath
