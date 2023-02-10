@@ -11,11 +11,11 @@ Dotenv.config({ path: `${__dirname}/.env` });
 // Glue manifest as a confidence store
 module.exports = new Confidence.Store({
     server: {
-        host: 'localhost',
+        host: process.env.HOST || 'localhost',
         port: {
             $env: 'PORT',
             $coerce: 'number',
-            $default: 3000
+            $default: process.env.PORT || 3000
         },
         debug: {
             $filter: { $env: 'NODE_ENV' },
@@ -48,10 +48,10 @@ module.exports = new Confidence.Store({
                             client: 'mysql',
                             connection: {
                                 //Conteneur Docker d5f9fc34f7779eeb8306b358866fd8c53f93df82f7e25ab006d48a82485228e9
-                                host: process.env.DB_HOST || '0.0.0.0',
-                                user: process.env.DB_USER || 'root',
-                                password: process.env.DB_PASSWORD || 'hapi',
-                                database: process.env.DB_DATABASE || 'user'
+                                host: process.env.DB_HOST,
+                                user: process.env.DB_USER,
+                                password: process.env.DB_PASSWORD,
+                                database: process.env.DB_DATABASE
                             },
                             migrations: {
                                 stub: Schwifty.migrationsStubPath
